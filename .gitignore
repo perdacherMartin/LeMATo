@@ -8,6 +8,7 @@ stacktrace.log
 /build/
 /*.zip
 /data/
+/data.backup/
 /plugin.xml
 /*.log
 /*DB.*
