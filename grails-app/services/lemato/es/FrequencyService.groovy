@@ -52,7 +52,7 @@ class FrequencyService {
     }
 
     private Closure getQueryForQuerystring(String queryString){
-        Closure querystr = {} 
+        Closure querystr = { match_all = {} } 
 
         if ( queryString ){
             querystr = {
@@ -61,10 +61,6 @@ class FrequencyService {
                     query = queryString
                 }
              }            
-        }else{
-            querystr = {
-                match_all = {}
-            }
         }
 
         return querystr
@@ -276,7 +272,7 @@ class FrequencyService {
 
     private Map<Integer, Long> getFrequenciesForTermAndType(String keyword, String typeName,Corpus c, String queryString){
         Map<Integer, Long> frequencies = [:]
-        Closure filterClosure = getFilterClosureForQuerystring(queryString)
+        Closure queryClosure = getQueryForQuerystring(queryString)
 
         SearchResponse sr = client.search {
             indices c.getIndexName()
@@ -285,10 +281,10 @@ class FrequencyService {
             source {
                 query {
                     filtered {
-                        query{
+                        query = queryClosure
+                        filter {
                             term { textBody = keyword }
                         }
-                        filter = filterClosure
                     }                
                 }
                 aggs {
@@ -334,15 +330,6 @@ class FrequencyService {
         
         Closure queryClosure = getQueryForQuerystring(queryString)
 
-        List<Closure> queryList = []
-
-        queryList << {
-                        match {
-                            textBody = searchterm
-                        } 
-                    }
-        queryList << queryClosure
-
         SearchResponse termSr = client.search {
             indices c.getIndexName()
             types DocumentRdb.typeName
@@ -350,14 +337,14 @@ class FrequencyService {
             source {
                 query {
                     filtered {
-                        query {
-                            bool {
-                                must = queryList
+                        query = queryClosure
+                        filter = { 
+                            term {
+                                textBody = "${searchterm}"
                             }
-                               
-                        }                        
-                    }     
-                }
+                        }
+                    }
+                }                
                 aggs {
                     perYear {
                       date_histogram { 
@@ -391,6 +378,7 @@ class FrequencyService {
                 years[i] = subentry.getKeyAsDate().getYear().doubleValue()
                 docFrequencies[i] = subentry.getDocCount().doubleValue()
                 sumDocFrequencies += subentry.getDocCount()
+                
             }
 
             Double kendallTau = new KendallsCorrelation().correlation(

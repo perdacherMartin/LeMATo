@@ -29,7 +29,9 @@ class Cooccurrence {
 			case Measure.DiceCoefficient:
 				return calculateDiceCoefficient()
 				break;
-			default: break;
+			default: 
+				throw new java.lang.UnsupportedOperationException("This kind of co-occurrence measure is currently not implemented!")
+				break;
 		}		
 	}
 

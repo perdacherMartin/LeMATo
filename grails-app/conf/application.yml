@@ -130,7 +130,7 @@ elasticsearch:
     response:
         size: 1000
     client:
-        mode: node # ('transport', 'node'])
+        mode: node # ('transport', 'node']) currently only node supported
     transport:
 #        clusterId: https://60fdd65f98b2c5dd530b8796955059c5
         clusterId: lemato_cluster
@@ -149,5 +149,3 @@ lemato:
     clustering:
         clusterLinkage: MEDIAN_LINKAGE # http://fozziethebeat.github.io/S-Space/apidocs/ Enum HierarchicalAgglomerativeClustering.ClusterLinkage
         simType: EUCLIDEAN # http://fozziethebeat.github.io/S-Space/apidocs/ Enum Similarity.SimType
-    scripts:
-        directory: esScripts

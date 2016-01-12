@@ -50,7 +50,7 @@ class ConcordanceController {
         List<String> stemming = elasticsearchService.getStemmedVersionsOfString(c, keyword, "unigram")
 
         if ( stemming.size() != 1 ){
-            flash.error = "Use a single centerd word only!"
+            flash.error = "Use a single centerd word only! " + stemming
             respond "", view:'index'
             return            
         }

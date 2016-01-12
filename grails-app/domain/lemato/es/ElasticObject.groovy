@@ -27,6 +27,7 @@ abstract class ElasticObject{
     abstract def beforeDelete() 
 
 	static Closure settings = {
+		number_of_shards = 1 // https://www.elastic.co/guide/en/elasticsearch/guide/current/relevance-is-broken.html
 		analysis {
 			filter {
 				german_stop {
