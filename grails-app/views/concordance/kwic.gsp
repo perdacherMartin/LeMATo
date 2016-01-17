@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />        
-        <title><g:message code="default.frequency.label" /></title>
+        <title><g:message code="default.concordance.label" /></title>
         <r:require modules="jquery-ui, blueprint"/>
         <r:require module="single-module"/>       
         <script type="text/javascript" src="https://www.google.com/jsapi"></script> 

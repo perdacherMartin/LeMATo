@@ -4,6 +4,7 @@
 *Db.script
 .settings
 stacktrace.log
+/bin/
 /libs/
 /build/
 /*.zip

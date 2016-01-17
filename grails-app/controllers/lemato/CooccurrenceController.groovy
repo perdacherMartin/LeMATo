@@ -62,13 +62,13 @@ class CooccurrenceController {
             return          	
         }
 
-        List<String> keywords = elasticsearchService.getStemmedVersionsOfString(luceneQuery);
+        List<String> keywords = elasticsearchService.getStemmedVersionsOfString(c,params.luceneQuery,"unigram");
         // Date start = new Date()
 
         List<SignificanceBucket> buckets = significanceService.getTopSignificantWordsForQuery(c,params.luceneQuery,size,params.textUnit)
 
-        if ( buckets.size() == 0 ){
-            flash.error = "Your query returned zero results."
+        if ( buckets.size() < size ){
+            flash.error = "Your query returned zero (or too less) results."
             respond "", view:'index'
             return            
         }

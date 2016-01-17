@@ -38,6 +38,13 @@
             <h1><g:message code="default.cooccurrence.label" /></h1>
             
             <div class="container">
+                <g:if test="${params.luceneQuery}" >
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <g:message code="default.filtering.byquery.label" args="[params.luceneQuery]"/>
+                    </div>                 
+                </g:if> 
+
                 <div id="dendrogram-container" style="width: 900px; height: 500px;">
                 </div>
             </div>
