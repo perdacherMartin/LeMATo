@@ -1,6 +1,10 @@
 LeMATo - LexicoMetric Analysis TOol
 ===================================
 
+# Introduction
+
+This work is based on my Master-Thesis, which is online available at: http://othes.univie.ac.at/41123/.
+
 # Software-Stack #
 
 This project relies on the work of many open source projects including:
