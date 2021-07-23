@@ -4,6 +4,7 @@ LeMATo - LexicoMetric Analysis TOol
 # Introduction
 
 This work is based on my Master-Thesis, which is online available at: http://othes.univie.ac.at/41123/.
+This version is not actively maintained. Contact the [author](mailto:martin.perdacher@univie.ac.at) if you are interested to use this tool.
 
 # Software-Stack #
 
